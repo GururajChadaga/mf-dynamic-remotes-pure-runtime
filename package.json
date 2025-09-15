@@ -7,6 +7,8 @@
     "start": "concurrently \"npm start --workspace=hostbuildtime\" \"npm start --workspace=hostruntime\" \"npm start --workspace=app2\" \"npm start --workspace=app3\"",
     "build": "concurrently \"npm run build --workspace=hostbuildtime\" \"npm run build --workspace=hostruntime\" \"npm run build --workspace=app2\" \"npm run build --workspace=app3\"",
     "cleandist": "rm -rf app*/dist hostbuildtime/dist hostruntime/dist",
+    "cleanmodules": "rm -rf app*/node_modules hostbuildtime/node_modules hostruntime/node_modules node_modules",
+    "cleanall": "npm run cleandist && npm run cleanmodules",
     "cleanstart": "npm run cleandist && npm start"
   },
   "keywords": [],

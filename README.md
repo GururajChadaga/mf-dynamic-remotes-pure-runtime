@@ -29,7 +29,10 @@ This results in an "invalid hook call error" when clicking the app3 button in ho
 ## Scripts
 
 - `npm start` - Start all applications concurrently
+- `npm run build` - Build all applications concurrently
 - `npm run cleandist` - Remove all dist directories
+- `npm run cleanmodules` - Remove all node_modules directories
+- `npm run cleanall` - Remove both dist and node_modules directories
 - `npm run cleanstart` - Clean dist directories and start all applications
 
 ## Getting Started
