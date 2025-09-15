@@ -2,6 +2,11 @@
 
 This repository contains modifications made to the official Module Federation examples from [module-federation-examples/advanced-api/dynamic-remotes](https://github.com/module-federation/module-federation-examples/tree/master/advanced-api/dynamic-remotes) to also demonstrate pure runtime consumption.
 
+## Tech Stack
+- **Package Manager**: npm
+- **Bundler**: Webpack 5
+- **Module Federation**: @module-federation/enhanced
+
 ## Architecture
 
 ### Remote Applications
