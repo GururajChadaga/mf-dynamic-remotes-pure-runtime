@@ -3,6 +3,9 @@ import moment from 'moment';
 import _ from 'lodash';
 
 export default function Widget() {
+  console.log("app2 widget sharescope", __webpack_share_scopes__);
+  console.log("app2 lodash version:", _.VERSION);
+
   // Using lodash functions in the widget
   const sampleData = [10, 20, 30, 40, 50];
   const shuffledData = _.shuffle([...sampleData]);

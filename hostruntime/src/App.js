@@ -21,7 +21,7 @@ const mf = createInstance({
   remotes: [
     {
       name: "app2",
-      entry: "http://localhost:3002/remoteEntry.js",
+      entry: "http://localhost:3002/mf-manifest.json",
     },
     {
       name: "app3",

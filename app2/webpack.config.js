@@ -6,9 +6,9 @@ const deps = require("./package.json").dependencies;
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
-  target: 'web',
+  target: "web",
   output: {
-    publicPath: 'auto',
+    publicPath: "auto",
   },
   module: {
     rules: [
@@ -36,11 +36,6 @@ module.exports = {
         "./Widget": "./src/Widget",
       },
       shared: {
-        moment: deps.moment,
-        lodash: {
-          requiredVersion: deps.lodash,
-          singleton: true,
-        },
         react: {
           requiredVersion: deps.react,
           import: "react", // the "react" package will be used a provided and fallback module
@@ -51,6 +46,11 @@ module.exports = {
         "react-dom": {
           requiredVersion: deps["react-dom"],
           singleton: true, // only a single version of the shared module is allowed
+        },
+        moment: deps.moment,
+        lodash: {
+          requiredVersion: deps.lodash,
+          singleton: true,
         },
       },
     }),

@@ -3,6 +3,9 @@ import moment from 'moment';
 import _ from 'lodash';
 
 export default function Widget() {
+  console.log("app3 widget sharescope", __webpack_share_scopes__);
+  console.log("app3 lodash version:", _.VERSION);
+
   React.useEffect(() => {
     console.log('hooks');
   }, []);
