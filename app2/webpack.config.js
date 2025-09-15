@@ -36,7 +36,11 @@ module.exports = {
         "./Widget": "./src/Widget",
       },
       shared: {
-      //   moment: deps.moment,
+        moment: deps.moment,
+        lodash: {
+          requiredVersion: deps.lodash,
+          singleton: true,
+        },
         react: {
           requiredVersion: deps.react,
           import: "react", // the "react" package will be used a provided and fallback module

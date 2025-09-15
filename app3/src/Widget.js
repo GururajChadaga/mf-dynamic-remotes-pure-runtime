@@ -1,10 +1,19 @@
 import React from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 
 export default function Widget() {
   React.useEffect(() => {
     console.log('hooks');
   }, []);
+
+  // Using different lodash functions in app3 widget
+  const fruits = ['apple', 'banana', 'cherry', 'date', 'elderberry'];
+  const capitalizedFruits = _.map(fruits, _.capitalize);
+  const randomFruit = _.sample(fruits);
+  const groupedByLength = _.groupBy(fruits, 'length');
+  const uniqueLengths = _.uniq(_.map(fruits, 'length'));
+
   return (
     <div
       style={{
@@ -20,6 +29,15 @@ export default function Widget() {
         Using <strong>momentjs</strong> for format the date
       </p>
       <p>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
+
+      <div style={{ marginTop: '1em', fontSize: '0.9em' }}>
+        <p><strong>Lodash Demo in App3 Widget:</strong></p>
+        <p>Fruits: {fruits.join(', ')}</p>
+        <p>Capitalized: {capitalizedFruits.join(', ')}</p>
+        <p>Random fruit: {randomFruit}</p>
+        <p>Unique lengths: {uniqueLengths.sort().join(', ')}</p>
+        <p>Grouped by length: {JSON.stringify(groupedByLength)}</p>
+      </div>
     </div>
   );
 }

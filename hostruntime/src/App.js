@@ -30,7 +30,7 @@ const mf = createInstance({
   ],
 });
 
-console.log("sharescope", __webpack_share_scopes__, mf);
+console.log("sharescope", __webpack_share_scopes__);
 
 function useDynamicImport({ module, scope }) {
   const [component, setComponent] = useState(null);

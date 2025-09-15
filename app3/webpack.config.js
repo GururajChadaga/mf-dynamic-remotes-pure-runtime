@@ -41,6 +41,10 @@ module.exports = {
       // there is no version check for the required version
       // so it will always use the higher version found
       shared: {
+        lodash: {
+          requiredVersion: deps.lodash,
+          singleton: true,
+        },
         react: {
           requiredVersion: deps.react,
           import: 'react', // the "react" package will be used a provided and fallback module
@@ -55,7 +59,7 @@ module.exports = {
         // adds moment as shared module
         // version is inferred from package.json
         // it will use the highest moment version that is >= 2.24 and < 3
-        // moment: deps.moment,
+        moment: deps.moment,
       },
     }),
     new HtmlWebpackPlugin({
