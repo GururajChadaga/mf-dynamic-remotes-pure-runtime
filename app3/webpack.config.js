@@ -57,7 +57,7 @@ module.exports = {
         moment: deps.moment,
         lodash: {
           requiredVersion: deps.lodash,
-          singleton: true,
+          singleton: false,
         },
       },
     }),

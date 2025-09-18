@@ -1,5 +1,13 @@
 import React, { useState, useEffect, Suspense } from "react";
-import { createInstance } from "@module-federation/runtime";
+import ReactDom from 'react-dom'
+import _ from 'lodash';
+import {
+  createInstance,
+  getInstance,
+} from "@module-federation/enhanced/runtime";
+
+console.log("top", getInstance(), getInstance, __FEDERATION__.__INSTANCES__);
+console.log("hostruntime lodash version:", _.VERSION);
 
 const mf = createInstance({
   name: "hostruntime",
@@ -7,17 +15,6 @@ const mf = createInstance({
   // version is inferred from package.json
   // there is no version check for the required version
   // so it will always use the higher version found
-  shared: {
-    react: {
-      import: "react", // the "react" package will be used a provided and fallback module
-      shareKey: "react", // under this name the shared module will be placed in the share scope
-      shareScope: "default", // share scope with this name will be used
-      singleton: true, // only a single version of the shared module is allowed
-    },
-    "react-dom": {
-      singleton: true, // only a single version of the shared module is allowed
-    },
-  },
   remotes: [
     {
       name: "app2",
@@ -28,9 +25,60 @@ const mf = createInstance({
       entry: "http://localhost:3003/remoteEntry.js",
     },
   ],
+
+  shared: {
+    lodash: {
+      version: "4.15.0",
+      scope: "default",
+      lib: () => _,
+      shareConfig: {
+        singleton: false,
+        requiredVersion: "4.15.0",
+      },
+    },
+    react: {
+      version: "18.2.0",
+      scope: "default",
+      lib: () => React,
+      shareConfig: {
+        singleton: true,
+        requiredVersion: "^18.2.0",
+      },
+    },
+    "react-dom": {
+      version: "18.2.0",
+      scope: "default",
+      lib: () => ReactDom,
+      shareConfig: {
+        singleton: true,
+        requiredVersion: "^18.2.0",
+      },
+    },
+  },
 });
 
-console.log("sharescope", __webpack_share_scopes__);
+// mf.registerShared({
+//   react: {
+//     version: "18.2.0",
+//     import: "react", // the "react" package will be used a provided and fallback module
+//     shareKey: "react", // under this name the shared module will be placed in the share scope
+//     shareScope: "default", // share scope with this name will be used
+//     singleton: true, // only a single version of the shared module is allowed
+//   },
+//   "react-dom": {
+//     version: "18.2.0",
+
+//     singleton: true, // only a single version of the shared module is allowed
+//   },
+// });
+
+console.log(
+  "sharescope",
+  __webpack_share_scopes__,
+  mf,
+  getInstance(),
+  __FEDERATION__.__INSTANCES_
+);
 
 function useDynamicImport({ module, scope }) {
   const [component, setComponent] = useState(null);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense } from "react";
-import { registerRemotes, loadRemote } from "@module-federation/runtime";
+import { registerRemotes, loadRemote, getInstance } from "@module-federation/enhanced/runtime";
+import _ from "lodash";
 
 registerRemotes([
   {
@@ -12,7 +13,8 @@ registerRemotes([
   },
 ]);
 
-console.log("sharescope", __webpack_share_scopes__);
+console.log("hostbuildtime sharescope", __webpack_share_scopes__, getInstance());
+console.log("hostbuildtime lodash version:", _.VERSION);
 
 function useDynamicImport({ module, scope }) {
   const [component, setComponent] = useState(null);

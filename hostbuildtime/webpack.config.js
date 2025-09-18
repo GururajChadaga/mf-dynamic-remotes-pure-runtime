@@ -1,13 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("@module-federation/enhanced");
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
-  target: 'web',
+  target: "web",
   output: {
-    publicPath: 'auto',
+    publicPath: "auto",
   },
   module: {
     rules: [
@@ -43,6 +44,10 @@ module.exports = {
         },
         "react-dom": {
           singleton: true, // only a single version of the shared module is allowed
+        },
+        lodash: {
+          requiredVersion: deps.lodash,
+          singleton: true,
         },
       },
     }),
